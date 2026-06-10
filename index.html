@@ -529,9 +529,46 @@ footer{
 .reveal-right{opacity:0;transform:translateX(32px);transition:opacity .7s ease, transform .7s ease;}
 .reveal-right.visible{opacity:1;transform:none;}
 
+
+/* ── HAMBURGER MOBILE MENU ── */
+.nav-hamburger{
+  display:none;
+  flex-direction:column;justify-content:center;align-items:center;
+  gap:5px;width:40px;height:40px;background:transparent;border:none;cursor:pointer;
+  padding:4px;border-radius:8px;transition:background .2s;flex-shrink:0;
+}
+.nav-hamburger:hover{background:rgba(255,255,255,0.08);}
+.nav-hamburger span{
+  display:block;width:22px;height:2px;background:rgba(255,255,255,0.8);
+  border-radius:2px;transition:all .3s ease;transform-origin:center;
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+.nav-mobile-menu{
+  display:none;
+  position:fixed;top:64px;left:0;right:0;z-index:998;
+  background:rgba(5,14,26,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(56,189,248,0.14);
+  flex-direction:column;padding:12px 20px 20px;gap:2px;
+  animation:slideDown .25s ease;
+}
+.nav-mobile-menu.open{display:flex;}
+.nav-mobile-menu a{
+  font-size:15px;font-weight:500;color:rgba(255,255,255,0.75);
+  padding:13px 16px;border-radius:10px;text-decoration:none;
+  transition:all .15s;border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-mobile-menu a:last-child{border-bottom:none;}
+.nav-mobile-menu a:hover{color:white;background:rgba(255,255,255,0.07);}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+
 /* ── RESPONSIVE ── */
 @media(max-width:760px){
   #nav .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+  .nav-cta{display:none;}
   .about-inner,.vol-inner,.contact-inner{grid-template-columns:1fr;}
   .policy-grid,.news-grid{grid-template-columns:1fr 1fr;}
   .form-row{grid-template-columns:1fr;}
@@ -704,7 +741,20 @@ footer{
 <a href="#contact">Contact us</a>
 </div>
   <button class="nav-cta" onclick="scrollTo('volunteer')">Join the Campaign</button>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="#mini-feed-section" onclick="closeMobileMenu()">Home</a>
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#events" onclick="closeMobileMenu()">Event</a>
+  <a href="#news" onclick="closeMobileMenu()">News</a>
+  <a href="#candidates" onclick="closeMobileMenu()">Candidates</a>
+  <a href="#council" onclick="closeMobileMenu()">Council</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact us</a>
+  <a href="#volunteer" onclick="closeMobileMenu()" style="color:var(--sky);font-weight:700;">Join the Campaign</a>
+</div>
 
 <!-- MARQUEE -->
 <div class="marquee-bar">
@@ -1713,6 +1763,27 @@ function openSumayaModal(){
   document.getElementById('modal-sumaya').classList.add('open');
   document.body.style.overflow='hidden';
 }
+
+
+function toggleMobileMenu(){
+  var menu = document.getElementById('navMobileMenu');
+  var btn = document.getElementById('navHamburger');
+  var isOpen = menu.classList.contains('open');
+  if(isOpen){ menu.classList.remove('open'); btn.classList.remove('open'); btn.setAttribute('aria-label','Open menu'); }
+  else { menu.classList.add('open'); btn.classList.add('open'); btn.setAttribute('aria-label','Close menu'); }
+}
+function closeMobileMenu(){
+  document.getElementById('navMobileMenu').classList.remove('open');
+  document.getElementById('navHamburger').classList.remove('open');
+}
+// Close mobile menu on outside click
+document.addEventListener('click', function(e){
+  var menu = document.getElementById('navMobileMenu');
+  var btn = document.getElementById('navHamburger');
+  if(menu && menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)){
+    closeMobileMenu();
+  }
+});
 
 </script>
 
