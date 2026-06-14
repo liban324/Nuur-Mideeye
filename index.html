@@ -529,9 +529,46 @@ footer{
 .reveal-right{opacity:0;transform:translateX(32px);transition:opacity .7s ease, transform .7s ease;}
 .reveal-right.visible{opacity:1;transform:none;}
 
+
+/* ── HAMBURGER MOBILE MENU ── */
+.nav-hamburger{
+  display:none;
+  flex-direction:column;justify-content:center;align-items:center;
+  gap:5px;width:40px;height:40px;background:transparent;border:none;cursor:pointer;
+  padding:4px;border-radius:8px;transition:background .2s;flex-shrink:0;
+}
+.nav-hamburger:hover{background:rgba(255,255,255,0.08);}
+.nav-hamburger span{
+  display:block;width:22px;height:2px;background:rgba(255,255,255,0.8);
+  border-radius:2px;transition:all .3s ease;transform-origin:center;
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+.nav-mobile-menu{
+  display:none;
+  position:fixed;top:64px;left:0;right:0;z-index:998;
+  background:rgba(5,14,26,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(56,189,248,0.14);
+  flex-direction:column;padding:12px 20px 20px;gap:2px;
+  animation:slideDown .25s ease;
+}
+.nav-mobile-menu.open{display:flex;}
+.nav-mobile-menu a{
+  font-size:15px;font-weight:500;color:rgba(255,255,255,0.75);
+  padding:13px 16px;border-radius:10px;text-decoration:none;
+  transition:all .15s;border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-mobile-menu a:last-child{border-bottom:none;}
+.nav-mobile-menu a:hover{color:white;background:rgba(255,255,255,0.07);}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+
 /* ── RESPONSIVE ── */
 @media(max-width:760px){
   #nav .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+  .nav-cta{display:none;}
   .about-inner,.vol-inner,.contact-inner{grid-template-columns:1fr;}
   .policy-grid,.news-grid{grid-template-columns:1fr 1fr;}
   .form-row{grid-template-columns:1fr;}
@@ -691,7 +728,7 @@ footer{
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-logo" onclick="scrollTo('mini-feed-section')" style="display:flex;align-items:center;gap:10px;">
-    <img src="images/img01.jpg" style="height:52px;width:auto;display:block;filter:drop-shadow(0 1px 4px rgba(0,0,0,0.5));" alt="G.Banaadir Coat of Arms"/>
+    <img src="images/img01.webp" style="height:52px;width:auto;display:block;filter:drop-shadow(0 1px 4px rgba(0,0,0,0.5));" alt="G.Banaadir Coat of Arms"/>
     <span>Ururka Towfiiiq. <span style="color:var(--sky);">Gobolka Banadir</span></span>
   </div>
   <div class="nav-links">
@@ -704,7 +741,20 @@ footer{
 <a href="#contact">Contact us</a>
 </div>
   <button class="nav-cta" onclick="scrollTo('volunteer')">Join the Campaign</button>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="#mini-feed-section" onclick="closeMobileMenu()">Home</a>
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#events" onclick="closeMobileMenu()">Event</a>
+  <a href="#news" onclick="closeMobileMenu()">News</a>
+  <a href="#candidates" onclick="closeMobileMenu()">Candidates</a>
+  <a href="#council" onclick="closeMobileMenu()">Council</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact us</a>
+  <a href="#volunteer" onclick="closeMobileMenu()" style="color:var(--sky);font-weight:700;">Join the Campaign</a>
+</div>
 
 <!-- MARQUEE -->
 <div class="marquee-bar">
@@ -816,7 +866,7 @@ footer{
   <div class="about-hero">
 
     <div class="about-poster reveal-left">
-      <img src="images/img02.jpg" alt="Nuur Max'ed Macalin Xasan — Nuur Mideeye, Musharax Xisbiga Tawfiiq"/>
+      <img src="images/img02.webp" alt="Nuur Max'ed Macalin Xasan — Nuur Mideeye, Musharax Xisbiga Tawfiiq"/>
     </div>
 
     <div class="about-article reveal-right">
@@ -931,10 +981,10 @@ footer{
           <li style="padding:.55rem 0 .55rem 1.4rem;position:relative;color:rgba(255,255,255,0.82);line-height:1.7;"><span style="position:absolute;left:0;top:.7rem;width:7px;height:7px;border-radius:50%;background:var(--sky);"></span><strong style="color:white;">Bulsho iyo amni wadajir ah</strong> — Waxaan hirgelin doonaa nidaam &ldquo;Community Policing&rdquo; si shacabka iyo ciidamada amnigu u yeeshaan wada shaqeyn joogto ah.</li>
         </ul>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;">
-          <img src="images/program01.png" alt="Amniga 1" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
-          <img src="images/program02.png" alt="Amniga 2" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
-          <img src="images/program03.jpg" alt="Amniga 3" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
-          <img src="images/program04.jpg" alt="Amniga 4" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
+          <img src="images/program01.webp" alt="Amniga 1" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
+          <img src="images/program02.webp" alt="Amniga 2" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
+          <img src="images/program03.webp" alt="Amniga 3" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
+          <img src="images/program04.webp" alt="Amniga 4" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
         </div>
       </div>
 
@@ -951,8 +1001,8 @@ footer{
           <li style="padding:.55rem 0 .55rem 1.4rem;position:relative;color:rgba(255,255,255,0.82);line-height:1.7;"><span style="position:absolute;left:0;top:.7rem;width:7px;height:7px;border-radius:50%;background:var(--sky);"></span><strong style="color:white;">Wacyigelin bulsho</strong> — Waxaan bulshada ka qeybgelin doonaa ilaalinta nadaafadda iyo deegaanka.</li>
         </ul>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;">
-          <img src="images/program05.png" alt="Nadaafadda 1" style="width:100%;height:200px;object-fit:cover;border-radius:8px;"/>
-          <img src="images/program06.jpg" alt="Nadaafadda 2" style="width:100%;height:200px;object-fit:cover;border-radius:8px;"/>
+          <img src="images/program05.webp" alt="Nadaafadda 1" style="width:100%;height:200px;object-fit:cover;border-radius:8px;"/>
+          <img src="images/program06.webp" alt="Nadaafadda 2" style="width:100%;height:200px;object-fit:cover;border-radius:8px;"/>
         </div>
       </div>
 
@@ -969,8 +1019,8 @@ footer{
           <li style="padding:.55rem 0 .55rem 1.4rem;position:relative;color:rgba(255,255,255,0.82);line-height:1.7;"><span style="position:absolute;left:0;top:.7rem;width:7px;height:7px;border-radius:50%;background:var(--sky);"></span><strong style="color:white;">Taageerada haweenka dhalinyarada</strong> — Waxaan taageeri doonaa gabdhaha dhalinyarada ah si ay uga qeyb qaataan dhaqaalaha magaalada.</li>
         </ul>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;">
-          <img src="images/program07.jpg" alt="Shaqo Abuur 1" style="width:100%;height:200px;object-fit:cover;border-radius:8px;"/>
-          <img src="images/program08.jpg" alt="Shaqo Abuur 2" style="width:100%;height:200px;object-fit:cover;border-radius:8px;"/>
+          <img src="images/program07.webp" alt="Shaqo Abuur 1" style="width:100%;height:200px;object-fit:cover;border-radius:8px;"/>
+          <img src="images/program08.webp" alt="Shaqo Abuur 2" style="width:100%;height:200px;object-fit:cover;border-radius:8px;"/>
         </div>
       </div>
 
@@ -988,9 +1038,9 @@ footer{
           <li style="padding:.55rem 0 .55rem 1.4rem;position:relative;color:rgba(255,255,255,0.82);line-height:1.7;"><span style="position:absolute;left:0;top:.7rem;width:7px;height:7px;border-radius:50%;background:var(--sky);"></span><strong style="color:white;">Mudnaanta dadka nugul</strong> — Mudnaanta koowaad waxaa la siin doonaa hooyooyinka, dadka naafada ah, qoysaska saboolka ah, iyo barakacayaasha.</li>
         </ul>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;">
-          <img src="images/program09.jpg" alt="Guriyaha 1" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
-          <img src="images/program10.jpg" alt="Guriyaha 2" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
-          <img src="images/program11.jpg" alt="Guriyaha 3" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
+          <img src="images/program09.webp" alt="Guriyaha 1" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
+          <img src="images/program10.webp" alt="Guriyaha 2" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
+          <img src="images/program11.webp" alt="Guriyaha 3" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
         </div>
       </div>
 
@@ -1007,9 +1057,9 @@ footer{
           <li style="padding:.55rem 0 .55rem 1.4rem;position:relative;color:rgba(255,255,255,0.82);line-height:1.7;"><span style="position:absolute;left:0;top:.7rem;width:7px;height:7px;border-radius:50%;background:var(--sky);"></span><strong style="color:white;">Caddaalad iyo sinaan</strong> — Waxaan hubin doonaa in adeegyada magaalada si siman u gaaraan dhammaan degmooyinka Muqdisho.</li>
         </ul>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;">
-          <img src="images/program12.jpg" alt="Maamul 1" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
-          <img src="images/program13.jpg" alt="Maamul 2" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
-          <img src="images/program14.jpg" alt="Maamul 3" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
+          <img src="images/program12.webp" alt="Maamul 1" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
+          <img src="images/program13.webp" alt="Maamul 2" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
+          <img src="images/program14.webp" alt="Maamul 3" style="width:100%;height:180px;object-fit:cover;border-radius:8px;"/>
         </div>
       </div>
 
@@ -1117,10 +1167,10 @@ footer{
     </div>
     <div class="news-grid reveal">
       <!-- KULAN CARD -->
-      <div class="news-card" id="kulan-card" style="display:block;border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.2);" onclick="openKulanModal()">
+      <div class="news-card" id="kulan-card" data-date="2026-06-02" style="display:block;border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.2);" onclick="openKulanModal()">
         <div style="position:relative;height:360px;overflow:hidden;background:#050e1a;">
-          <div id="kulan-track" style="display:flex;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);background:#050e1a;"><img src="images/img03.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 0"/>
-            <img src="images/img04.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 1"/><img src="images/img05.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 2"/><img src="images/img06.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 3"/><img src="images/img07.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 4"/><img src="images/img08.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 5"/><img src="images/img09.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 6"/><img src="images/img10.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 7"/><img src="images/img11.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 8"/><img src="images/img12.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 9"/><img src="images/img13.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 10"/><img src="images/img14.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 11"/><img src="images/img15.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 12"/><img src="images/img16.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 13"/><img src="images/img17.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 14"/>
+          <div id="kulan-track" style="display:flex;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);background:#050e1a;"><img src="images/img03.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 0"/>
+            <img src="images/img04.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 1"/><img src="images/img05.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 2"/><img src="images/img06.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 3"/><img src="images/img07.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 4"/><img src="images/img08.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 5"/><img src="images/img09.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 6"/><img src="images/img10.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 7"/><img src="images/img11.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 8"/><img src="images/img12.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 9"/><img src="images/img13.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 10"/><img src="images/img14.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 11"/><img src="images/img15.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 12"/><img src="images/img16.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 13"/><img src="images/img17.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha Xafiiska Tawfiiq — 14"/>
           </div>
           <button onclick="event.stopPropagation();kulanPrev()" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:rgba(5,14,26,0.7);border:1px solid rgba(255,255,255,0.2);color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s;">&#8249;</button>
           <button onclick="event.stopPropagation();kulanNext()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:rgba(5,14,26,0.7);border:1px solid rgba(255,255,255,0.2);color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s;">&#8250;</button>
@@ -1141,14 +1191,14 @@ footer{
           </div>
         </div>
       </div>
-      <div class="news-card" id="carousel-card" onclick="openModal('modal-announce')" style="display:block;border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.2);">
+      <div class="news-card" id="carousel-card" data-date="2026-05-03" onclick="openModal('modal-announce')" style="display:block;border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.2);">
         <div style="position:relative;height:320px;overflow:hidden;" id="carousel-track-wrap">
           <div id="carousel-track" style="display:flex;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
-            <img src="images/img18.png" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Xaflad taageere badan"/>
-            <img src="images/img19.png" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Musharaxa iyo taageeryaasha"/>
-            <img src="images/img20.png" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Nuur Mideeye hadlayaa"/>
-            <img src="images/img21.png" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Madaxda xisbiga Tawfiiq"/>
-            <img src="images/img22.png" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Munaasabadda dhawaaqista"/>
+            <img src="images/img18.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Xaflad taageere badan"/>
+            <img src="images/img19.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Musharaxa iyo taageeryaasha"/>
+            <img src="images/img20.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Nuur Mideeye hadlayaa"/>
+            <img src="images/img21.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Madaxda xisbiga Tawfiiq"/>
+            <img src="images/img22.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Munaasabadda dhawaaqista"/>
           </div>
           <button onclick="carouselPrev()" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(5,14,26,0.7);border:1px solid rgba(255,255,255,0.2);color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s;" onmouseover="this.style.background='rgba(14,107,138,0.9)'" onmouseout="this.style.background='rgba(5,14,26,0.7)'">&#8249;</button>
           <button onclick="carouselNext()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(5,14,26,0.7);border:1px solid rgba(255,255,255,0.2);color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s;" onmouseover="this.style.background='rgba(14,107,138,0.9)'" onmouseout="this.style.background='rgba(5,14,26,0.7)'">&#8250;</button>
@@ -1177,9 +1227,9 @@ footer{
         </div>
       </div>
       <!-- CAQABAD CARD -->
-      <div class="news-card" id="caqabad-card" style="display:block;border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.2);" onclick="openCaqabadModal()">
+      <div class="news-card" id="caqabad-card" data-date="2026-06-02" style="display:block;border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.2);" onclick="openCaqabadModal()">
         <div style="position:relative;height:360px;overflow:hidden;background:#050e1a;">
-          <div id="caq-track" style="display:flex;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);"><img src="images/img23.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 1"/><img src="images/img24.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 2"/><img src="images/img25.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 3"/><img src="images/img26.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 4"/><img src="images/img27.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 5"/><img src="images/img28.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 6"/><img src="images/img29.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 7"/><img src="images/img30.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 8"/><img src="images/img31.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 9"/><img src="images/img32.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 10"/><img src="images/img33.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 11"/><img src="images/img34.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 12"/><img src="images/img35.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 13"/><img src="images/img36.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 14"/><img src="images/img37.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 15"/></div>
+          <div id="caq-track" style="display:flex;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);"><img src="images/img23.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 1"/><img src="images/img24.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 2"/><img src="images/img25.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 3"/><img src="images/img26.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 4"/><img src="images/img27.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 5"/><img src="images/img28.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 6"/><img src="images/img29.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 7"/><img src="images/img30.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 8"/><img src="images/img31.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 9"/><img src="images/img32.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 10"/><img src="images/img33.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 11"/><img src="images/img34.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 12"/><img src="images/img35.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 13"/><img src="images/img36.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 14"/><img src="images/img37.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 15"/></div>
           <button onclick="event.stopPropagation();caqPrev()" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:rgba(5,14,26,0.7);border:1px solid rgba(255,255,255,0.2);color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s;">&#8249;</button>
           <button onclick="event.stopPropagation();caqNext()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:rgba(5,14,26,0.7);border:1px solid rgba(255,255,255,0.2);color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s;">&#8250;</button>
           <div style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:10;"><div onclick="caqGo(0)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:1;" class="cqdot"></div><div onclick="caqGo(1)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:0.35;" class="cqdot"></div><div onclick="caqGo(2)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:0.35;" class="cqdot"></div><div onclick="caqGo(3)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:0.35;" class="cqdot"></div><div onclick="caqGo(4)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:0.35;" class="cqdot"></div><div onclick="caqGo(5)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:0.35;" class="cqdot"></div><div onclick="caqGo(6)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:0.35;" class="cqdot"></div><div onclick="caqGo(7)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:0.35;" class="cqdot"></div><div onclick="caqGo(8)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:0.35;" class="cqdot"></div><div onclick="caqGo(9)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:0.35;" class="cqdot"></div><div onclick="caqGo(10)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:0.35;" class="cqdot"></div><div onclick="caqGo(11)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:0.35;" class="cqdot"></div><div onclick="caqGo(12)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:0.35;" class="cqdot"></div><div onclick="caqGo(13)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:0.35;" class="cqdot"></div><div onclick="caqGo(14)" style="width:7px;height:7px;border-radius:50%;background:white;cursor:pointer;transition:all .2s;opacity:0.35;" class="cqdot"></div></div>
@@ -1200,11 +1250,11 @@ footer{
         </div>
       </div>
 
-      <div class="news-card featured-news" onclick="openModal('modal-office')" style="display:block;border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.25);">
+      <div class="news-card featured-news" data-date="2026-05-13" onclick="openModal('modal-office')" style="display:block;border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.25);">
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;height:220px;">
-          <img src="images/img38.png" style="width:100%;height:100%;object-fit:contain;display:block;background:#050e1a;" alt="Nuur Mideeye at campaign office desk"/>
-          <img src="images/img39.png" style="width:100%;height:100%;object-fit:contain;display:block;background:#050e1a;" alt="Grand opening ribbon cutting ceremony"/>
-          <img src="images/img40.png" style="width:100%;height:100%;object-fit:contain;display:block;background:#050e1a;" alt="Women's wing leader speaking at opening"/>
+          <img src="images/img38.webp" style="width:100%;height:100%;object-fit:contain;display:block;background:#050e1a;" alt="Nuur Mideeye at campaign office desk"/>
+          <img src="images/img39.webp" style="width:100%;height:100%;object-fit:contain;display:block;background:#050e1a;" alt="Grand opening ribbon cutting ceremony"/>
+          <img src="images/img40.webp" style="width:100%;height:100%;object-fit:contain;display:block;background:#050e1a;" alt="Women's wing leader speaking at opening"/>
         </div>
         <div class="news-body" style="padding:20px 22px;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
@@ -1221,12 +1271,23 @@ footer{
         </div>
       </div>
 
-      <div class="news-card"><div class="news-img" style="background:rgba(56,189,248,0.08);">📰</div><div class="news-body"><div class="news-tag">Taageero</div><h4>Mideeye Earns Taageero of the National Waxbarashada Association</h4><div class="news-date">June 5, 2028</div></div></div>
-      <div class="news-card"><div class="news-img" style="background:rgba(56,189,248,0.05);">🌿</div><div class="news-body"><div class="news-tag">Policy</div><h4>Mideeye Unveils Landmark $1.5 Trillion Green Economy Blueprint</h4><div class="news-date">June 2, 2028</div></div></div>
-      <div class="news-card"><div class="news-img" style="background:rgba(56,189,248,0.08);">📊</div><div class="news-body"><div class="news-tag">Polling</div><h4>New National Poll: Mideeye Leads Primary Field by 11 Points</h4><div class="news-date">May 28, 2028</div></div></div>
-      <div class="news-card"><div class="news-img" style="background:rgba(56,189,248,0.05);">🤝</div><div class="news-body"><div class="news-tag">Campaign</div><h4>Grassroots Fundraising Reaches Record $42M — Taageero Dadweyne</h4><div class="news-date">May 20, 2028</div></div></div>
-      <div class="news-card"><div class="news-img" style="background:rgba(56,189,248,0.08);">🗳️</div><div class="news-body"><div class="news-tag">Voting Rights</div><h4>Mideeye Calls for National Early Voting Standards in Major Speech</h4><div class="news-date">May 15, 2028</div></div></div>
-      <div class="news-card"><div class="news-img" style="background:rgba(56,189,248,0.05);">🏗️</div><div class="news-body"><div class="news-tag">Infrastructure</div><h4>Mideeye Releases 10-Year Infrastructure Roadmap at Detroit Forum</h4><div class="news-date">May 10, 2028</div></div></div>
+      <!-- SAWIRO CARD -->
+      <div class="news-card" id="sawiro-card" data-date="2026-06-10" style="display:block;border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.2);cursor:pointer;" onclick="openModal('modal-sawiro')">
+        <div class="news-img" style="background:rgba(14,107,138,0.15);height:110px;display:flex;align-items:center;justify-content:center;font-size:38px;">🤝</div>
+        <div class="news-body" style="padding:16px 18px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;flex-wrap:wrap;gap:6px;">
+            <div class="news-tag" style="color:#38bdf8;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;">Xafladaha &nbsp;·&nbsp; Muqdisho</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.4);">Jun 10, 2026</div>
+          </div>
+          <h4 style="font-size:13px;color:white;line-height:1.5;margin-bottom:8px;font-family:'Playfair Display',Georgia,serif;font-weight:700;">Munaasab Isbarasho iyo Kala Warqaadasho — Musharaxa Nuur Mideeye oo Qaban Qaabiyey Kulanka Xildhibaanada</h4>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;">
+            <span style="font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;background:rgba(56,189,248,0.12);color:#38bdf8;">Xisbiga Tawfiiq</span>
+            <span style="font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.6);">Kulan Musharaxiinta</span>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </section>
@@ -1307,7 +1368,7 @@ footer{
 
 <footer>
   <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.08);">
-    <img src="images/img01.jpg" style="height:130px;width:auto;display:block;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.4));" alt="G.Banaadir Coat of Arms"/>
+    <img src="images/img01.webp" style="height:130px;width:auto;display:block;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.4));" alt="G.Banaadir Coat of Arms"/>
     <div style="text-align:left;">
       <div style="font-family:'Playfair Display',Georgia,serif;font-size:16px;font-weight:900;color:white;letter-spacing:-.3px;">Gobolka Banaadir</div>
       <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:2px;letter-spacing:.5px;">Caasimadda Soomaaliya · Muqdisho</div>
@@ -1714,6 +1775,50 @@ function openSumayaModal(){
   document.body.style.overflow='hidden';
 }
 
+
+function toggleMobileMenu(){
+  var menu = document.getElementById('navMobileMenu');
+  var btn = document.getElementById('navHamburger');
+  var isOpen = menu.classList.contains('open');
+  if(isOpen){ menu.classList.remove('open'); btn.classList.remove('open'); btn.setAttribute('aria-label','Open menu'); }
+  else { menu.classList.add('open'); btn.classList.add('open'); btn.setAttribute('aria-label','Close menu'); }
+}
+function closeMobileMenu(){
+  document.getElementById('navMobileMenu').classList.remove('open');
+  document.getElementById('navHamburger').classList.remove('open');
+}
+// Close mobile menu on outside click
+document.addEventListener('click', function(e){
+  var menu = document.getElementById('navMobileMenu');
+  var btn = document.getElementById('navHamburger');
+  if(menu && menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)){
+    closeMobileMenu();
+  }
+});
+
+// ── NEWS GRID: sort cards newest-first by data-date ──────────────────────────
+// To add a new article card, just give it  data-date="YYYY-MM-DD"  and it will
+// automatically appear at the top of the grid.
+document.addEventListener('DOMContentLoaded', function(){
+  var grid = document.querySelector('.news-grid');
+  if (!grid) return;
+  var cards = Array.from(grid.querySelectorAll(':scope > .news-card'));
+  cards.sort(function(a, b){
+    var da = a.getAttribute('data-date') || '0000-00-00';
+    var db = b.getAttribute('data-date') || '0000-00-00';
+    return db.localeCompare(da); // descending: newest first
+  });
+  // Re-append in sorted order; cards that were already visible keep their state,
+  // newly appended ones get re-observed so the reveal animation fires correctly.
+  cards.forEach(function(card){
+    grid.appendChild(card);
+    // If the card isn't visible yet, re-add to the IntersectionObserver
+    if (!card.classList.contains('visible') && typeof IO !== 'undefined') {
+      IO.observe(card);
+    }
+  });
+});
+
 </script>
 
 <!-- ARTICLE MODALS -->
@@ -1783,8 +1888,8 @@ function openSumayaModal(){
 <div class="modal-overlay" id="modal-kulan" onclick="closeModal(event,'modal-kulan')">
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="modal-carousel">
-      <div id="mct-kulan" style="display:flex;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);"><img src="images/img03.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 0"/>
-        <img src="images/img04.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 1"/><img src="images/img05.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 2"/><img src="images/img06.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 3"/><img src="images/img07.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 4"/><img src="images/img08.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 5"/><img src="images/img09.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 6"/><img src="images/img10.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 7"/><img src="images/img11.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 8"/><img src="images/img12.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 9"/><img src="images/img13.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 10"/><img src="images/img14.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 11"/><img src="images/img15.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 12"/><img src="images/img16.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 13"/><img src="images/img17.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 14"/>
+      <div id="mct-kulan" style="display:flex;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);"><img src="images/img03.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 0"/>
+        <img src="images/img04.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 1"/><img src="images/img05.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 2"/><img src="images/img06.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 3"/><img src="images/img07.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 4"/><img src="images/img08.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 5"/><img src="images/img09.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 6"/><img src="images/img10.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 7"/><img src="images/img11.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 8"/><img src="images/img12.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 9"/><img src="images/img13.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 10"/><img src="images/img14.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 11"/><img src="images/img15.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 12"/><img src="images/img16.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 13"/><img src="images/img17.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Kulan ololaha 14"/>
       </div>
       <button class="modal-arrow prev" onclick="mKulanPrev()">&#8249;</button>
       <button class="modal-arrow next" onclick="mKulanNext()">&#8250;</button>
@@ -1818,7 +1923,7 @@ function openSumayaModal(){
 <div class="modal-overlay" id="modal-caqabad" onclick="closeModal(event,'modal-caqabad')">
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="modal-carousel">
-      <div id="mct-caqabad" style="display:flex;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);"><img src="images/img23.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 1"/><img src="images/img24.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 2"/><img src="images/img25.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 3"/><img src="images/img26.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 4"/><img src="images/img27.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 5"/><img src="images/img28.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 6"/><img src="images/img29.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 7"/><img src="images/img30.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 8"/><img src="images/img31.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 9"/><img src="images/img32.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 10"/><img src="images/img33.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 11"/><img src="images/img34.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 12"/><img src="images/img35.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 13"/><img src="images/img36.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 14"/><img src="images/img37.jpg" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 15"/></div>
+      <div id="mct-caqabad" style="display:flex;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);"><img src="images/img23.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 1"/><img src="images/img24.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 2"/><img src="images/img25.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 3"/><img src="images/img26.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 4"/><img src="images/img27.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 5"/><img src="images/img28.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 6"/><img src="images/img29.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 7"/><img src="images/img30.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 8"/><img src="images/img31.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 9"/><img src="images/img32.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 10"/><img src="images/img33.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 11"/><img src="images/img34.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 12"/><img src="images/img35.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 13"/><img src="images/img36.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 14"/><img src="images/img37.webp" style="min-width:100%;height:100%;object-fit:contain;flex-shrink:0;background:#050e1a;" alt="Caqabadaha olo-layaasha 15"/></div>
       <button class="modal-arrow prev" onclick="mCaqPrev()">&#8249;</button>
       <button class="modal-arrow next" onclick="mCaqNext()">&#8250;</button>
       <div class="modal-dots" id="mdots-caqabad"><div class="modal-dot active" onclick="mCaqGo(0)"></div><div class="modal-dot" onclick="mCaqGo(1)"></div><div class="modal-dot" onclick="mCaqGo(2)"></div><div class="modal-dot" onclick="mCaqGo(3)"></div><div class="modal-dot" onclick="mCaqGo(4)"></div><div class="modal-dot" onclick="mCaqGo(5)"></div><div class="modal-dot" onclick="mCaqGo(6)"></div><div class="modal-dot" onclick="mCaqGo(7)"></div><div class="modal-dot" onclick="mCaqGo(8)"></div><div class="modal-dot" onclick="mCaqGo(9)"></div><div class="modal-dot" onclick="mCaqGo(10)"></div><div class="modal-dot" onclick="mCaqGo(11)"></div><div class="modal-dot" onclick="mCaqGo(12)"></div><div class="modal-dot" onclick="mCaqGo(13)"></div><div class="modal-dot" onclick="mCaqGo(14)"></div></div>
@@ -1914,6 +2019,35 @@ function openSumayaModal(){
         <span class="modal-pill" style="background:rgba(245,200,66,0.1);color:#f5c842;">Shaacinta Musharaxnimo</span>
         <span class="modal-pill" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.7);">Golaha Caasimada</span>
         <span class="modal-pill" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.7);">Jun 7, 2026</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: SAWIRO — Munaasab Isbarasho -->
+<div class="modal-overlay" id="modal-sawiro" onclick="closeModal(event,'modal-sawiro')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-carousel" style="display:flex;align-items:center;justify-content:center;background:rgba(14,107,138,0.10);">
+      <span style="font-size:72px;line-height:1;">🤝</span>
+      <button class="modal-close" onclick="document.getElementById('modal-sawiro').classList.remove('open');document.body.style.overflow=''">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">Xafladaha &nbsp;·&nbsp; Muqdisho</div>
+      <div class="modal-date">2026 &nbsp;·&nbsp; Muqdisho, Banaadir</div>
+      <div class="modal-title">Munaasab Isbarasho iyo Kala Warqaadasho — Musharaxa Nuur Mideeye oo Qaban Qaabiyey Kulanka Xildhibaanada</div>
+      <div class="modal-text">
+        <p>Munaasab isbarasho iyo kala warqaadasho oo uu qaban qaabiyey musharaxa duqada caasimada gobolka Banaadir ee xisbiga Tawfiiq — Nuur Moalin Mohamed Nuur Mideeye — ayaa ka qabsootay magaalada Muqdisho.</p>
+        <p>Kulanka, oo ay kasoo qayb galeen xildhibaanada musharaxiinta golaha caasimada ee gobolka Banaadir iyo musharaxa duqa caasimada, ayaa ahaa mid si wayn uu uso agaasimay gudoomiye Nuur Mideeye. Kulankii ayaa siwayn lasku bartay, taasi fursad wayn u ahayd musharaxiinta sida adag ougu hamijira kamid noqoshada golaha caasimada ee gobolka Banaadir.</p>
+        <p>Ogu horayn, musharaxiinta golaha caasimada ee kasoo qayb galay kulanka ayaa lagu mahadceliyey munaasabada. Qaar kamid ah oo hadalo kajeediyay munaasabada ayaa bogaadiyey kulan iyo muhiimadiisa, maadaama uu ahaa mid siwayn loogu kala warqadanayey.</p>
+        <p>Halka qaar kamid ah kuwii horay ogu soobaxay xildhibanada golaha degaanka, dhankooda ay kubooriyeen in ay dadal sameyaan xildhibaanada raadinaya in ay fursad u helaan kamid noqoshada xildhibaanada golaha caasimada gobolka Banaadir.</p>
+        <p>Si lamid ah, martida kasoo qayb gashey munaasabada ayaa si mug iyo miisan leh ogu mahadceliyey gudoomiye Nuur Mideeye oo ah musharaxa xisbiga Tawfiiq ee duqa caasimada gobolka Banaadir — iskuxirkiisa iyo dalalka ku adaana in dhamaan xildhibaanada musharaxiinta ah iyo kuwii horeba iskugu keenay si ay ogu tashadaan ayaaha iyo talabooyinka xiga.</p>
+        <p>Dhinaca musharaxiinta ayaa kalmado kooban jeediyey iyagoo umahadnaqay gudoomiyaha fursad uu isiyey iyo dhiirigalintiisa ku aadan in ay dadal sameeyaan si lohulaysto.</p>
+        <p><strong>Gunaanad —</strong> Nuur Moalin Mohamed Nuur Mideeye ayaa kalmado bogaadin iyo dhiirigalin ujeediyey in ay xoojiyaan, iskana warqabaan ololahana labilaabo — qofkastana howsha kala ay maanta joogto kasi dhaqaajiyo — ayuu faray dhamaan musharaxiinta golaha caasimada ee gobolka Banaadir.</p>
+      </div>
+      <div class="modal-pills">
+        <span class="modal-pill" style="background:rgba(56,189,248,0.12);color:#38bdf8;">Xisbiga Tawfiiq</span>
+        <span class="modal-pill" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.6);">Kulan Musharaxiinta</span>
+        <span class="modal-pill" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.6);">Gobolka Banaadir</span>
       </div>
     </div>
   </div>
