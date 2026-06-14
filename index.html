@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<link rel="icon" type="image/x-icon" href="favicon.ico"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Mideeye 2026 </title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -1381,6 +1380,25 @@ footer{
       </div>
 
       <!-- SAWIRO CARD -->
+      <div class="news-card" data-date="2026-06-10" style="display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.2);cursor:pointer;" onclick="openModal('modal-sawiro')">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;height:180px;">
+          <img src="images/img59.webp" style="width:100%;height:100%;object-fit:cover;display:block;background:#050e1a;" alt="Sawiro 1"/>
+          <img src="images/img60.webp" style="width:100%;height:100%;object-fit:cover;display:block;background:#050e1a;" alt="Sawiro 2"/>
+          <img src="images/img61.webp" style="width:100%;height:100%;object-fit:cover;display:block;background:#050e1a;" alt="Sawiro 3"/>
+        </div>
+        <div class="news-body" style="padding:16px 18px;flex:1;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;flex-wrap:wrap;gap:6px;">
+            <div class="news-tag" style="color:#38bdf8;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;">Sawirro &nbsp;·&nbsp; Muqdisho</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.4);">Jun 10, 2026</div>
+          </div>
+          <h4 style="font-size:13px;color:white;line-height:1.5;margin-bottom:8px;font-family:'Playfair Display',Georgia,serif;font-weight:700;">Munaasab Isbarasho iyo Kala Warqaadasho — Musharaxa Nuur Mideeye oo Qaban Qaabiyey Kulanka Xildhibaanada</h4>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:10px;">Munaasab isbarasho iyo kala warqaadasho oo uu qaban qaabiyey musharaxa duqada caasimada Gobolka Banaadir ee Xisbiga Tawfiiq — Nuur Mideeye — ayaa ka qabsootay Muqdisho. Xildhibaanada musharaxiinta golaha caasimada ayaa dhaxmartay kala warqadasho is xog waraysi.</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;">
+            <span style="font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;background:rgba(56,189,248,0.12);color:#38bdf8;">Xisbiga Tawfiiq</span>
+            <span style="font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.6);">Kulan Musharaxiinta</span>
+          </div>
+        </div>
+      </div>
 
 
 
@@ -1407,13 +1425,13 @@ footer{
       <h3>Is Diiwaangeli — Soo Dallac</h3>
       <p>Qof habayn ah ayaa kula xiriiri doona 48 saac gudahood.</p>
       <div class="form-row">
-        <div class="fg"><label for="vol-fname">Magaca Hore</label><input id="vol-fname" name="vol-fname" type="text" placeholder="Nuur"/></div>
-        <div class="fg"><label for="vol-lname">Magaca Dambe</label><input id="vol-lname" name="vol-lname" type="text" placeholder="Mideeye"/></div>
+        <div class="fg"><label>Magaca Hore</label><input type="text" placeholder="Nuur"/></div>
+        <div class="fg"><label>Magaca Dambe</label><input type="text" placeholder="Mideeye"/></div>
       </div>
-      <div class="fg"><label for="vol-email">Iimaylka</label><input id="vol-email" name="vol-email" type="email" placeholder="macluumaad@misaale.so"/></div>
-      <div class="fg"><label for="vol-phone">Telefoonka</label><input id="vol-phone" name="vol-phone" type="tel" placeholder="+252 61 000 0000"/></div>
-      <div class="fg"><label for="vol-district">Degmada</label><input id="vol-district" name="vol-district" type="text" placeholder="Muqdisho"/></div>
-      <div class="fg"><label for="vol-role">Sideed u gacan seyri kartaa?</label><select id="vol-role" name="vol-role"><option>Telefoonka Banking</option><option>Aargudashada</option><option>Qaadista Xafladaha</option><option>Baraha Bulshada</option><option>Gaadiidka Codbixinta</option><option>Xogta & Maamulka</option></select></div>
+      <div class="fg"><label>Iimaylka</label><input type="email" placeholder="macluumaad@misaale.so"/></div>
+      <div class="fg"><label>Telefoonka</label><input type="tel" placeholder="+252 61 000 0000"/></div>
+      <div class="fg"><label>Degmada</label><input type="text" placeholder="Muqdisho"/></div>
+      <div class="fg"><label>Sideed u gacan seyri kartaa?</label><select><option>Telefoonka Banking</option><option>Aargudashada</option><option>Qaadista Xafladaha</option><option>Baraha Bulshada</option><option>Gaadiidka Codbixinta</option><option>Xogta & Maamulka</option></select></div>
       <button class="form-submit" onclick="document.getElementById('v-ok').style.display='block'">Dir — Waan Diyaar Ahay</button>
       <div class="form-ok" id="v-ok">✓ Mahadsanid! Qof habayn ah ayaa kula xiriiri doona 48 saac gudahood.</div>
     </div>
@@ -1450,12 +1468,12 @@ footer{
       <h3>Dir Fariin</h3>
       <p>Waxaan akhrinaa dhammaan fariimaha. Jawaab waad heli doontaa 2-3 maalin shaqo gudahood.</p>
       <div class="form-row">
-        <div class="fg"><label for="con-fname">Magaca Hore</label><input id="con-fname" name="con-fname" type="text" placeholder="Magaca Hore"/></div>
-        <div class="fg"><label for="con-lname">Magaca Dambe</label><input id="con-lname" name="con-lname" type="text" placeholder="Magaca Dambe"/></div>
+        <div class="fg"><label>Magaca Hore</label><input type="text" placeholder="Magaca Hore"/></div>
+        <div class="fg"><label>Magaca Dambe</label><input type="text" placeholder="Magaca Dambe"/></div>
       </div>
-      <div class="fg"><label for="con-email">Iimaylka</label><input id="con-email" name="con-email" type="email" placeholder="macluumaad@misaale.so"/></div>
-      <div class="fg"><label for="con-subject">Subject</label><select id="con-subject" name="con-subject"><option>Su'aal Guud</option><option>Warbaahinta</option><option>Dalabka Xaflad</option><option>Ra'yiga Barnaamijka</option><option>Taageero</option><option>Kale</option></select></div>
-      <div class="fg"><label for="con-message">Message</label><textarea id="con-message" name="con-message" placeholder="Fariintaada halkan ku qor..."></textarea></div>
+      <div class="fg"><label>Iimaylka</label><input type="email" placeholder="macluumaad@misaale.so"/></div>
+      <div class="fg"><label>Subject</label><select><option>Su'aal Guud</option><option>Warbaahinta</option><option>Dalabka Xaflad</option><option>Ra'yiga Barnaamijka</option><option>Taageero</option><option>Kale</option></select></div>
+      <div class="fg"><label>Message</label><textarea placeholder="Fariintaada halkan ku qor..."></textarea></div>
       <button class="form-submit" onclick="document.getElementById('c-ok').style.display='block'">Dir Fariinta</button>
       <div class="form-ok" id="c-ok">✓ Fariinta waa la helay! Waxaan kula xiriiri doonaa 2-3 maalin shaqo gudahood.</div>
     </div>
@@ -1799,10 +1817,10 @@ function openCaqabadModal(){mcqIdx=0;document.getElementById('mct-caqabad').styl
 
 var wbIdx = 0; var wbTotal = 4;
 var wbImgs = [
-  "images/img05.webp",
-  "images/img06.webp",
-  "images/img07.webp",
-  "images/img08.webp"
+  "images/img5.webp",
+  "images/img6.webp",
+  "images/img7.webp",
+  "images/img8.webp"
 ];
 function wbGo(n){
   wbIdx=n;
@@ -1832,7 +1850,7 @@ function openWarbixinModal(){
 var smIdx = 0;
 var smTotal = 14;
 var smImgs = [
-  "images/img09.webp",
+  "images/img9.webp",
   "images/img10.webp",
   "images/img11.webp",
   "images/img12.webp",
@@ -1929,7 +1947,7 @@ document.addEventListener('DOMContentLoaded', function(){
       <button class="modal-arrow next" onclick="mCarouselNext('announce')">&#8250;</button>
       <div class="modal-dots" id="mdots-announce"></div>
       <div class="modal-counter" id="mcounter-announce">1 / 5</div>
-      <button class="modal-close" onclick="document.getElementById('modal-announce').classList.remove('open')">&#x2715;</button>
+      <button class="modal-close" onclick="document.getElementById('modal-announce').classList.remove('open');document.body.style.overflow=''">&#x2715;</button>
     </div>
     <div class="modal-body">
       <div class="modal-tag">Dhawaaqista Musharaxnimada &nbsp;·&nbsp; Muqdisho</div>
@@ -1960,7 +1978,7 @@ document.addEventListener('DOMContentLoaded', function(){
       <button class="modal-arrow next" onclick="mCarouselNext('office')">&#8250;</button>
       <div class="modal-dots" id="mdots-office"></div>
       <div class="modal-counter" id="mcounter-office">1 / 3</div>
-      <button class="modal-close" onclick="document.getElementById('modal-office').classList.remove('open')">&#x2715;</button>
+      <button class="modal-close" onclick="document.getElementById('modal-office').classList.remove('open');document.body.style.overflow=''">&#x2715;</button>
     </div>
     <div class="modal-body">
       <div class="modal-tag">Daah-furka Xafiiska &nbsp;·&nbsp; Muqdisho</div>
