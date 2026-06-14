@@ -36,8 +36,10 @@ box-shadow:0 2px 24px rgba(56,189,248,0.08),0 1px 0 rgba(255,255,255,0.06);
 transition:background .4s,backdrop-filter .4s;
 }
 #nav.scrolled{background:rgba(5,14,26,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(56,189,248,0.14);box-shadow:0 2px 24px rgba(14,107,138,0.18);}
-.nav-logo{font-family:var(--fd);font-size:16px;font-weight:900;color:var(--white);letter-spacing:-0.5px;cursor:pointer;}
-.nav-logo span{color:var(--sky);}
+.nav-logo{font-family:var(--fd);font-size:16px;font-weight:900;color:#0b1f35;letter-spacing:-0.5px;cursor:pointer;transition:color .4s;}
+.nav-logo span{color:#0e4a6b;transition:color .4s;}
+#nav.scrolled .nav-logo{color:var(--white);}
+#nav.scrolled .nav-logo span{color:var(--sky);}
 .nav-links{display:flex;gap:4px;}
 .nav-links a{font-size:13px;font-weight:500;color:rgba(255,255,255,0.65);padding:7px 14px;border-radius:8px;cursor:pointer;transition:all .2s;text-decoration:none;}
 .nav-links a:hover{color:white;background:rgba(255,255,255,0.08);}
