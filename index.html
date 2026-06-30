@@ -736,8 +736,22 @@ display:-webkit-box;-webkit-line-clamp:3;
 .mini-feed-grid { gap:10px; }
 }
 </style>
+<style>
+#google_translate_element{display:inline-block;}
+.goog-te-gadget{font-size:0!important;color:transparent!important;}
+.goog-te-gadget .goog-te-combo{font-size:13px;padding:4px 8px;border-radius:8px;border:1px solid rgba(56,189,248,0.4);background:rgba(14,107,138,0.15);color:white;cursor:pointer;outline:none;}
+.goog-te-banner-frame{display:none!important;}
+body{top:0!important;}
+</style>
 </head>
-<body> <nav id="nav"> <div class="nav-logo" onclick="scrollTo('mini-feed-section')" style="display:flex;align-items:center;gap:10px;"> <img src="images/img01.webp" style="height:52px;width:auto;display:block;filter:drop-shadow(0 1px 4px rgba(0,0,0,0.5));" alt="G.Banaadir Coat of Arms"/> <span>Ururka Towfiiiq. <span style="color:var(--sky);">Gobolka Banadir</span></span> </div> <div class="nav-links">
+<body>
+<div id="google_translate_element" style="position:fixed;bottom:18px;right:18px;z-index:9999;background:rgba(11,31,53,0.92);border:1px solid rgba(56,189,248,0.3);border-radius:10px;padding:6px 10px;backdrop-filter:blur(8px);"></div>
+<script>
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({pageLanguage:'so',layout:google.translate.TranslateElement.InlineLayout.SIMPLE},'google_translate_element');
+}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> <nav id="nav"> <div class="nav-logo" onclick="scrollTo('mini-feed-section')" style="display:flex;align-items:center;gap:10px;"> <img src="images/img01.webp" style="height:52px;width:auto;display:block;filter:drop-shadow(0 1px 4px rgba(0,0,0,0.5));" alt="G.Banaadir Coat of Arms"/> <span>Ururka Towfiiiq. <span style="color:var(--sky);">Gobolka Banadir</span></span> </div> <div class="nav-links">
 <a href="#mini-feed-section">Home</a>
 <a href="#about">About</a>
 <a href="#events">Event</a>
