@@ -572,13 +572,13 @@ footer{flex-direction:column;align-items:flex-start;}
 .modal-carousel{height:220px!important;}
 .modal-body{padding:20px 18px 28px;}
 .modal-title{font-size:19px;}
-/* Barnaamijka Musharraxa — remove gap between policy sections and program */
+/* Barnaamijka Musharraxa — tighten spacing, keep all content visible */
 #platform .reveal[style*="margin-top:3.5rem"]{margin-top:1rem!important;padding-top:1.5rem!important;}
-#platform [style*="margin-bottom:3.5rem"]{margin-bottom:1.5rem!important;}
-#platform [style*="margin-bottom:1rem"]{margin-bottom:0!important;}
-#platform [style*="padding:2rem"]{padding:1.2rem!important;}
-/* collapse program image grids on mobile */
-#platform [style*="grid-template-columns:repeat(auto-fill"]{display:none!important;}
+#platform [style*="margin-bottom:3.5rem"]{margin-bottom:1.2rem!important;}
+#platform [style*="padding:2rem"]{padding:1rem!important;}
+/* shrink program image grids to single column with smaller height */
+#platform [style*="grid-template-columns:repeat(auto-fill"]{grid-template-columns:1fr!important;}
+#platform [style*="grid-template-columns:repeat(auto-fill"] img{height:160px!important;}
 }
 .modal-overlay {
 display:none;position:fixed;inset:0;z-index:999;
