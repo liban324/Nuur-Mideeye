@@ -232,6 +232,9 @@ border-top:1px solid #e2e8f0;
 background:var(--navy);
 padding:100px 2.5rem;
 }
+@media(max-width:760px){
+#platform{padding:48px 1.2rem;}
+}
 .platform-inner{max-width:960px;margin:0 auto;}
 .platform-inner .section-eye{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--sky);margin-bottom:12px;}
 .platform-inner h2{font-family:var(--fd);font-size:clamp(28px,4vw,48px);font-weight:900;color:white;line-height:1.1;letter-spacing:-1px;margin-bottom:14px;}
@@ -513,6 +516,9 @@ margin-bottom:12px;border:2px solid transparent;
 .reveal-left.visible{opacity:1;transform:none;}
 .reveal-right{opacity:0;transform:translateX(32px);transition:opacity .7s ease, transform .7s ease;}
 .reveal-right.visible{opacity:1;transform:none;}
+@media(max-width:760px){
+.reveal,.reveal-left,.reveal-right{opacity:1;transform:none;transition:none;}
+}
 /* ── HAMBURGER MOBILE MENU ── */
 .nav-hamburger{
 display:none;
