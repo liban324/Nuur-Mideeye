@@ -47,6 +47,7 @@ transition:background .4s,backdrop-filter .4s;
 .nav-cta:hover{background:#0a5a76;transform:translateY(-1px);}
 /* ── SECTIONS ── */
 .scene{min-height:100vh;position:relative;overflow:hidden;}
+#platform{min-height:0;}
 /* ── HERO ── */
 #hero{
 display:flex;align-items:center;
@@ -546,6 +547,7 @@ transition:all .15s;border-bottom:1px solid rgba(255,255,255,0.06);
 @keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
 /* ── RESPONSIVE ── */
 @media(max-width:760px){
+.scene{min-height:0;}
 #nav .nav-links{display:none;}
 .nav-hamburger{display:flex;}
 .nav-cta{display:none;}
